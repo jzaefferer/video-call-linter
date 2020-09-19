@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hello!</title>
+
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+    />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>Video Call Linter v0.1.0</h1>
+
+    <div id="intro">
+      <p>
+        This app helps you check (lint) your video and audio setup for video
+        calls. It only runs in your browser, hosted by Glitch. It doesn't send
+        your video or audio data anywheere.
+      </p>
+      <p>
+        Click here to get started - first granting camera access:
+      </p>
+      <p>
+        <button id="start-app">
+          Start linting my video call setup
+        </button>
+      </p>
+    </div>
+    <video>
+    <div id="errorOutput"></div>
+
+    <!-- import the webpage's javascript file -->
+    <script src="/face-api.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
