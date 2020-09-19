@@ -33,7 +33,7 @@ async function startVideo() {
 // @ts-ignore
 const faceapi = window.faceapi;
 
-faceapi.nets.tinyFaceDetector.loadFromUri("/models").then(startVideo);
+faceapi.nets.tinyFaceDetector.loadFromUri("models").then(startVideo);
 
 video.addEventListener("playing", async () => {
   const canvas = faceapi.createCanvasFromMedia(video);
