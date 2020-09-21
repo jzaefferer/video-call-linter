@@ -14,7 +14,7 @@ If you're [testing this](https://jzaefferer.github.io/video-call-linter/) and yo
 - Use big icons to illustrate the text, liek arrow up when too close too the bottom
 - Test on smartphones!
 
-On the intro text, give a hint to pick the camera used for calls (maybe detect if there's more than one?). Also give an option to switch the camera.
+On the intro text, give a hint to pick the camera used for calls (maybe detect if there's more than one?). Also give an [option to switch the camera](https://h3manth.com/new/blog/2018/switch-cameras-getusermedia/).
 
 ## Checks and recommendations
 
