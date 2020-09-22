@@ -7,9 +7,9 @@ async function startVideo() {
   try {
     const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = mediaStream;
-    video.onloadedmetadata = function (e) {
+    video.addEventListener("loadedmetadata", () => {
       video.play();
-    };
+    });
     intro.remove();
   } catch (err) {
     errorOutput.textContent = err.message;
@@ -33,7 +33,10 @@ async function startVideo() {
 // @ts-ignore
 const faceapi = window.faceapi;
 
-faceapi.nets.tinyFaceDetector.loadFromUri("models").then(startVideo);
+Promise.all([
+  faceapi.nets.tinyFaceDetector.loadFromUri("models"),
+  faceapi.nets.faceLandmark68TinyNet.loadFromUri("models"),
+]).then(startVideo);
 
 video.addEventListener("playing", async () => {
   const canvas = faceapi.createCanvasFromMedia(video);
@@ -41,14 +44,14 @@ video.addEventListener("playing", async () => {
   const displaySize = { width: video.videoWidth, height: video.videoHeight };
   faceapi.matchDimensions(canvas, displaySize);
   setInterval(async () => {
-    const detections = await faceapi.detectAllFaces(
-      video,
-      new faceapi.TinyFaceDetectorOptions()
-    );
+    const detections = await faceapi
+      .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+      .withFaceLandmarks(true);
+    console.log(detections);
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-    console.log({ resizedDetections });
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     faceapi.draw.drawDetections(canvas, resizedDetections);
+    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
 
     const text = [];
     const anchor = { x: 10, y: 10 };
@@ -62,7 +65,7 @@ video.addEventListener("playing", async () => {
       text.push("Try moving your camera so that your face is centered");
       drawOptions.fontColor = "red";
     } else {
-      const box = resizedDetections[0]._box;
+      const box = resizedDetections[0].detection._box;
       const positionLimit = 0.1;
       const distanceLimitClose = 0.45;
       const distanceLimitFar = 0.25;
@@ -103,13 +106,13 @@ video.addEventListener("playing", async () => {
         text.push("Looking good!");
         drawOptions.fontColor = "#55ff07";
       }
-      console.log({
-        faceWidth: box._width,
-        limitClose: displaySize.width * distanceLimitClose,
-        limitFar: displaySize.width * distanceLimitFar,
-      });
+      // console.log({
+      //   faceWidth: box._width,
+      //   limitClose: displaySize.width * distanceLimitClose,
+      //   limitFar: displaySize.width * distanceLimitFar,
+      // });
     }
     const drawBox = new faceapi.draw.DrawTextField(text, anchor, drawOptions);
     drawBox.draw(canvas);
-  }, 1500);
+  }, 100);
 });
