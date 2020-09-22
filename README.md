@@ -22,7 +22,7 @@ Pause when tab is in the background!
 
 **Angle**: Maybe with feature detection, to calculate the angle of the face?
 
-**Lighting**, Background: Sample the surroundings, or the whole image, to see if there's too much (bright) white (like #fffeff, #fbfcfd)? Maybe start by turning it grayscale, then try to detect overexposed areas (sort all pixels by color? Check the ratio of almost-perfect white to other colors?).
+**Lighting**, Background: Sample the surroundings, or the whole image, to see if there's too much (bright) white (like #fffeff, #fbfcfd)? Maybe start by turning it grayscale, then try to detect overexposed areas (sort all pixels by color? Check the ratio of almost-perfect white to other colors?). [See also](https://www.pyimagesearch.com/2016/10/31/detecting-multiple-bright-spots-in-an-image-with-python-and-opencv/), [or this lib](https://github.com/Vibrant-Colors/node-vibrant)
 
 **Network**: Ping some server to check for latency (in ms)? Use browser API to check for connection type (2G = bad)?
 
