@@ -16,11 +16,13 @@ If you're [testing this](https://jzaefferer.github.io/video-call-linter/) and yo
 
 On the intro text, give a hint to pick the camera used for calls (maybe detect if there's more than one?). Also give an [option to switch the camera](https://h3manth.com/new/blog/2018/switch-cameras-getusermedia/).
 
+Pause when tab is in the background!
+
 ## Checks and recommendations
 
 **Angle**: Maybe with feature detection, to calculate the angle of the face?
 
-**Lighting**, Background: Sample the surroundings, or the whole image, to see if there's too much (bright) white (like #fffeff)?
+**Lighting**, Background: Sample the surroundings, or the whole image, to see if there's too much (bright) white (like #fffeff, #fbfcfd)? Maybe start by turning it grayscale, then try to detect overexposed areas (sort all pixels by color? Check the ratio of almost-perfect white to other colors?).
 
 **Network**: Ping some server to check for latency (in ms)? Use browser API to check for connection type (2G = bad)?
 
