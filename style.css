@@ -33,4 +33,5 @@ canvas {
 video {
   display: none;
   width: 100%;
+  transform: scale(-1, 1);
 }

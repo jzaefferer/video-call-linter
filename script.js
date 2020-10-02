@@ -48,13 +48,27 @@ video.addEventListener("playing", async () => {
       new faceapi.TinyFaceDetectorOptions()
     );
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-    faceapi.draw.drawDetections(canvas, resizedDetections);
+
+    // custom loop to mirror render detections
+    // faceapi.draw.drawDetections(canvas, resizedDetections);
+    resizedDetections.forEach((detection) => {
+      const box = detection._box;
+      const drawBox = new faceapi.draw.DrawBox({
+        // mirror x-axis
+        x: displaySize.width - box._x - box._width,
+        y: box._y,
+        width: box._width,
+        height: box._height,
+      });
+      drawBox.draw(canvas);
+    });
 
     let exposedLabelDrawn = false;
     overexposedSectors.forEach((sector) => {
       if (sector.overexposed) {
+        // mirror x-axis
+        sector.x = displaySize.width - sector.x - sector.width;
         // draw rectangle
         const drawBox = new faceapi.draw.DrawBox(sector, {
           label: exposedLabelDrawn ? null : "Overexposure detected",
