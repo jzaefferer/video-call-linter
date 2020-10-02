@@ -18,6 +18,10 @@ body {
   padding: 0;
 }
 
+#intro {
+  padding: 24px;
+}
+
 #errorOutput {
   color: red;
 }
