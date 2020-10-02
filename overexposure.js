@@ -16,16 +16,22 @@ function detectOverexposure(imgEl) {
 
   context.drawImage(imgEl, 0, 0);
 
-  const thirdW = imgWidth / 3;
-  const halfH = imgHeight / 2;
-  const sectors = [
-    [0, 0, thirdW, halfH],
-    [thirdW, 0, thirdW, halfH],
-    [thirdW * 2, 0, thirdW, halfH],
-    [0, halfH, thirdW, halfH],
-    [thirdW, halfH, thirdW, halfH],
-    [thirdW * 2, halfH, thirdW, halfH],
-  ];
+  const widthSplits = 6;
+  const heightSplits = 6;
+  const widthRatio = imgWidth / widthSplits;
+  const heightRatio = imgHeight / heightSplits;
+  const sectors = [];
+  for (const rows of [...Array(heightSplits).keys()]) {
+    for (const columns of [...Array(widthSplits).keys()]) {
+      sectors.push([
+        columns * widthRatio,
+        rows * heightRatio,
+        widthRatio,
+        heightRatio,
+      ]);
+    }
+  }
+
   const result = sectors.map(([x, y, width, height]) => {
     let data = context.getImageData(x, y, width, height);
 

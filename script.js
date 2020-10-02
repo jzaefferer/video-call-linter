@@ -51,17 +51,19 @@ video.addEventListener("playing", async () => {
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     faceapi.draw.drawDetections(canvas, resizedDetections);
 
+    let exposedLabelDrawn = false;
     overexposedSectors.forEach((sector) => {
       if (sector.overexposed) {
         // draw rectangle
         const drawBox = new faceapi.draw.DrawBox(sector, {
-          label: "Overexposure detected",
+          label: exposedLabelDrawn ? null : "Overexposure detected",
           lineWidth: 2,
           boxColor: "#fff",
           drawLabelOptions: {
             fontColor: "#000",
           },
         });
+        exposedLabelDrawn = true;
         drawBox.draw(canvas);
       }
     });
