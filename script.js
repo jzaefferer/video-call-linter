@@ -17,23 +17,23 @@ async function startVideo() {
   }
 }
 
-// while developing; or for returning visitors?
-// if (location.search === "?quickstart") {
-//   startVideo();
-// } else {
-//   document.getElementById("start-app").addEventListener(
-//     "click",
-//     async () => {
-//       startVideo();
-//     },
-//     { once: true }
-//   );
-// }
-
 // @ts-ignore
 const faceapi = window.faceapi;
 
-faceapi.nets.tinyFaceDetector.loadFromUri("models").then(startVideo);
+const modelLoader = faceapi.nets.tinyFaceDetector.loadFromUri("models");
+
+// while developing; or for returning visitors?
+if (location.search === "?quickstart") {
+  modelLoader.then(startVideo);
+} else {
+  document.getElementById("start-app").addEventListener(
+    "click",
+    async () => {
+      modelLoader.then(startVideo);
+    },
+    { once: true }
+  );
+}
 
 video.addEventListener("playing", async () => {
   const canvas = faceapi.createCanvasFromMedia(video);
