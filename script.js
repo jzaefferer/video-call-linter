@@ -10,6 +10,7 @@ async function startVideo() {
     video.onloadedmetadata = function (e) {
       video.play();
     };
+    video.style.display = "block";
     intro.remove();
   } catch (err) {
     errorOutput.textContent = err.message;

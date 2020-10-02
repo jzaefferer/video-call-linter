@@ -21,10 +21,10 @@ body {
   color: red;
 }
 
-h1 {
-  display: none;
-}
-
 canvas {
   position: absolute;
+}
+
+video {
+  display: none;
 }
