@@ -39,7 +39,7 @@ if (location.search === "?quickstart") {
 video.addEventListener("playing", async () => {
   const canvas = faceapi.createCanvasFromMedia(video);
   document.body.append(canvas);
-  const displaySize = { width: video.videoWidth, height: video.videoHeight };
+  const displaySize = { width: video.clientWidth, height: video.clientHeight };
   faceapi.matchDimensions(canvas, displaySize);
   setInterval(async () => {
     const overexposedSectors = detectOverexposure(video);
@@ -48,7 +48,7 @@ video.addEventListener("playing", async () => {
       new faceapi.TinyFaceDetectorOptions()
     );
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
-    console.log({ resizedDetections });
+
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     faceapi.draw.drawDetections(canvas, resizedDetections);
 
