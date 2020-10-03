@@ -6,6 +6,16 @@ If you're [testing this](https://jzaefferer.github.io/video-call-linter/) and yo
 
 [Further reading](https://joerns-recurse-ideas.glitch.me/#video-call-linter)
 
+## Features
+
+**Number of faces**: Shows an error when no face or multiple faces are found.
+
+**Position**: Based on face detection, calculates if your face is too close to the top, right, bottom or left edge.
+
+**Distance**: Based on face detection and the ratio between your face and the dimensions of the video, calculates if you're too close or too far away.
+
+**Lighting**: Samples the image, in a grid of 6 by 6, looking for overexposed sections, from sampled pixels with RGB values of 250 or higher (where RGB 255 is perfect white).
+
 # Improvements
 
 ## UI
@@ -22,8 +32,6 @@ Pause when tab is in the background!
 
 **Angle**: Maybe with feature detection, to calculate the angle of the face?
 
-**Lighting**, Background: Sample the surroundings, or the whole image, to see if there's too much (bright) white (like #fffeff, #fbfcfd)? Maybe start by turning it grayscale, then try to detect overexposed areas (sort all pixels by color? Check the ratio of almost-perfect white to other colors?). [See also](https://www.pyimagesearch.com/2016/10/31/detecting-multiple-bright-spots-in-an-image-with-python-and-opencv/), [or this lib](https://github.com/Vibrant-Colors/node-vibrant)
-
 **Network**: Ping some server to check for latency (in ms)? Use browser API to check for connection type (2G = bad)?
 
-Audio: Record an audio sample, play it back, for a self-test. Sample noise, sample voice, calculate signal-to-noise. Try to transcribe the voice (with language input?) - if it works, others should understand you, too.
+**Audio**: Record an audio sample, play it back, for a self-test. Sample noise, sample voice, calculate signal-to-noise. Try to transcribe the voice (with language input?) - if it works, others should understand you, too.
