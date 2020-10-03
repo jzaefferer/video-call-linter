@@ -158,11 +158,6 @@ video.addEventListener("playing", async () => {
         drawOptions.fontSize = 30;
         drawOptions.fontColor = "#55ff07";
       }
-      // console.log({
-      //   faceWidth: box._width,
-      //   limitClose: displaySize.width * distanceLimitClose,
-      //   limitFar: displaySize.width * distanceLimitFar,
-      // });
     }
     const drawBox = new faceapi.draw.DrawTextField(text, anchor, drawOptions);
     drawBox.draw(canvas);
