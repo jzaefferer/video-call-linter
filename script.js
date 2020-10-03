@@ -108,6 +108,8 @@ video.addEventListener("playing", async () => {
       const positionLimit = 0.1;
       const distanceLimitClose = 0.45;
       const distanceLimitFar = 0.21;
+      const layout =
+        displaySize.width > displaySize.height ? "landscape" : "portrait";
       // hiding at the bottom?
       if (box._y + box._height >= displaySize.height * (1 - positionLimit)) {
         text.push("Too close to the bottom edge");
@@ -132,12 +134,22 @@ video.addEventListener("playing", async () => {
         // text.push("Try moving your camera so that your face is centered");
         drawOptions.fontColor = "yellow";
         // too close?
-      } else if (box._width >= displaySize.width * distanceLimitClose) {
+      } else if (
+        (layout === "landscape" &&
+          box._width >= displaySize.width * distanceLimitClose) ||
+        (layout === "portrait" &&
+          box._height >= displaySize.height * distanceLimitClose)
+      ) {
         text.push("Too close");
         text.push("Try moving back a little");
         drawOptions.fontColor = "yellow";
         // too far away?
-      } else if (box._width <= displaySize.width * distanceLimitFar) {
+      } else if (
+        (layout === "landscape" &&
+          box._width <= displaySize.width * distanceLimitFar) ||
+        (layout === "portrait" &&
+          box._height <= displaySize.height * distanceLimitFar)
+      ) {
         text.push("Too far away");
         text.push("Try moving closer a little");
         drawOptions.fontColor = "yellow";
