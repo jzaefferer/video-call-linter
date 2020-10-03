@@ -42,6 +42,10 @@ video.addEventListener("playing", async () => {
   const displaySize = { width: video.clientWidth, height: video.clientHeight };
   faceapi.matchDimensions(canvas, displaySize);
   setInterval(async () => {
+    // Pause when tab is in the background
+    if (document.hidden) {
+      return;
+    }
     const overexposedSectors = detectOverexposure(video);
     const detections = await faceapi.detectAllFaces(
       video,
@@ -150,5 +154,5 @@ video.addEventListener("playing", async () => {
     }
     const drawBox = new faceapi.draw.DrawTextField(text, anchor, drawOptions);
     drawBox.draw(canvas);
-  }, 1500);
+  }, 500);
 });
