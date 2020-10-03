@@ -27,9 +27,3 @@ Pause when tab is in the background!
 **Network**: Ping some server to check for latency (in ms)? Use browser API to check for connection type (2G = bad)?
 
 Audio: Record an audio sample, play it back, for a self-test. Sample noise, sample voice, calculate signal-to-noise. Try to transcribe the voice (with language input?) - if it works, others should understand you, too.
-
-# Known Issues
-
-Camera stream is flipped, which makes it confusing when raising hand etc.
-
-Flipping the output is easy enough (`video { transform: scale(-1, 1); }`), but the face recognition library can't be flipped, so the result is then off.
