@@ -33,3 +33,15 @@ On the intro text, give a hint to pick the camera used for calls (maybe detect i
 **Network**: Ping some server to check for latency (in ms)? Use browser API to check for connection type (2G = bad)?
 
 **Audio**: Record an audio sample, play it back, for a self-test. Sample noise, sample voice, calculate signal-to-noise. Try to transcribe the voice (with language input?) - if it works, others should understand you, too.
+
+## Local Testing
+
+```
+# run once to generate certs
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
+# run to support https, required for testing getUserMedia on other devices (not localhost)
+# and turn off cache!
+npx http-server -S -c-1
+```
+
+[Remote Debugging (on Android)](https://developers.google.com/web/tools/chrome-devtools/remote-debugging) helps a lot.
