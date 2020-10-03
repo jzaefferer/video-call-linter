@@ -96,6 +96,9 @@ video.addEventListener("playing", async () => {
       text.push("Can't find any faces; Try moving your");
       text.push("camera so that your face is centered");
       drawOptions.fontColor = "red";
+    } else if (resizedDetections.length > 1) {
+      text.push("Found multiple faces (not supported)");
+      drawOptions.fontColor = "red";
     } else {
       const box = resizedDetections[0]._box;
       const positionLimit = 0.1;
