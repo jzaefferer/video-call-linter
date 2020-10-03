@@ -75,7 +75,7 @@ video.addEventListener("playing", async () => {
         sector.x = displaySize.width - sector.x - sector.width;
         // draw rectangle
         const drawBox = new faceapi.draw.DrawBox(sector, {
-          label: exposedLabelDrawn ? null : "Overexposure detected",
+          label: exposedLabelDrawn ? null : "Overexposed",
           lineWidth: 2,
           boxColor: "#fff",
           drawLabelOptions: {
