@@ -32,4 +32,5 @@ canvas {
 
 video {
   display: none;
+  width: 100%;
 }
