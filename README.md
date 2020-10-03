@@ -16,17 +16,16 @@ If you're [testing this](https://jzaefferer.github.io/video-call-linter/) and yo
 
 **Lighting**: Samples the image, in a grid of 6 by 6, looking for overexposed sections, from sampled pixels with RGB values of 250 or higher (where RGB 255 is perfect white).
 
-# Improvements
+## Improvements
 
-## UI
+These are some ideas for enhancements.
 
-- Move messages to the top of the video, with bigger font size
-- Use big icons to illustrate the text, liek arrow up when too close too the bottom
-- Test on smartphones!
+### UI
 
-On the intro text, give a hint to pick the camera used for calls (maybe detect if there's more than one?). Also give an [option to switch the camera](https://h3manth.com/new/blog/2018/switch-cameras-getusermedia/).
+- Use big icons to illustrate the text, like arrow up when too close too the bottom
+- On the intro text, give a hint to pick the camera used for calls (maybe detect if there's more than one?). Also give an [option to switch the camera](https://h3manth.com/new/blog/2018/switch-cameras-getusermedia/).
 
-## Checks and recommendations
+### Checks and recommendations
 
 **Angle**: Maybe with feature detection, to calculate the angle of the face?
 
